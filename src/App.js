@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux'
+import { ordered, restocked } from './features/cake/cakeSlice';
 
 function App() {
+  const numberOfCakes = useSelector(state => state.cake.numberOfCakes);
+  const dispatch = useDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Redux-Toolkit</h1>
+      <h2>Number of Cakes: {numberOfCakes}</h2>
+      <button onClick={() => dispatch(ordered())}>Order_Cake</button>
+      <button onClick={() => dispatch(restocked(5))}>Restock_Cake</button>
     </div>
   );
 }
